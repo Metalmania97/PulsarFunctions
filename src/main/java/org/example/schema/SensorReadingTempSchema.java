@@ -1,18 +1,26 @@
-package org.example;
+package org.example.schema;
 
-public class SensorReadingTemp {
+public class SensorReadingTempSchema {
     private String message_id;
     private double temperature;
     private String timestamp;
+    private String pulsar_timestamp;
     private String payload;
 
-    public SensorReadingTemp() {
+    public SensorReadingTempSchema() {
     }
 
-    public SensorReadingTemp(String message_id, double temperature, String timestamp, String payload) {
+    public SensorReadingTempSchema(
+            String message_id,
+            double temperature,
+            String timestamp,
+            String pulsar_timestamp,
+            String payload
+    ) {
         this.message_id = message_id;
         this.temperature = temperature;
         this.timestamp = timestamp;
+        this.pulsar_timestamp = pulsar_timestamp;
         this.payload = payload;
     }
 
@@ -38,6 +46,14 @@ public class SensorReadingTemp {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getPulsar_timestamp() {
+        return pulsar_timestamp;
+    }
+
+    public void setPulsar_timestamp(String pulsar_timestamp) {
+        this.pulsar_timestamp = pulsar_timestamp;
     }
 
     public String getPayload() {

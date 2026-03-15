@@ -2,6 +2,8 @@ package org.example;
 
 import org.apache.pulsar.functions.api.Context;
 import org.apache.pulsar.functions.api.Function;
+import org.example.schema.SensorReadingProcessedTemp;
+import org.example.schema.SensorReadingTempSchema;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;

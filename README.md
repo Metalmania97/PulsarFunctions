@@ -43,7 +43,7 @@ Flow:
 
 `input message` -> `schema message` -> `processed message`
 
-The code is under `src/main/java/org/example`.
+Functions are under `src/main/java/org/example`, and schema classes are under `src/main/java/org/example/schema`.
 
 ## Schemas (JSON)
 
@@ -93,6 +93,23 @@ Raw input topic -> `TempSchemaEnforcerFunction` -> schema topic
 ### Flow 2 (Full processing)
 
 Raw input topic -> `TempSchemaEnforcerFunction` -> schema topic -> `TemperatureProcessorFunction` -> processed topic
+
+### Flowchart
+
+```mermaid
+flowchart LR
+  subgraph F1[Flow 1: Schema only]
+    A1["Raw input topic (SensorReadingTemp)"] --> B1[TempSchemaEnforcerFunction]
+    B1 --> C1["Schema topic (SensorReadingTempSchema)"]
+  end
+
+  subgraph F2[Flow 2: Full processing]
+    A2["Raw input topic (SensorReadingTemp)"] --> B2[TempSchemaEnforcerFunction]
+    B2 --> C2["Schema topic (SensorReadingTempSchema)"]
+    C2 --> D2[TemperatureProcessorFunction]
+    D2 --> E2["Processed topic (SensorReadingProcessedTemp)"]
+  end
+```
 
 ## Prerequisites
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.schema;
 
 public class SensorReadingProcessedTemp {
     private String message_id;
