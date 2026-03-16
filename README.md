@@ -134,27 +134,29 @@ Update topic names, tenant/namespace, broker URL, and jar path for your environm
 ### Deploy schema enforcer
 
 ```bash
-pulsar-admin functions create \
+docker exec -it pulsar bin/pulsar-admin functions create \
   --tenant public \
   --namespace default \
-  --name temp-schema-enforcer \
-  --jar target/PulsarFunction-1.0-SNAPSHOT.jar \
+  --name temp-schema-fn \
+  --jar /pulsar/functions/PulsarFunction-1.0-SNAPSHOT.jar \
   --classname org.example.TempSchemaEnforcerFunction \
   --inputs persistent://public/default/temp \
-  --output persistent://public/default/temp_schema
+  --output persistent://public/default/temp_schema \
+  --parallelism 1
 ```
 
 ### Deploy temperature processor
 
 ```bash
-pulsar-admin functions create \
+docker exec -it pulsar bin/pulsar-admin functions create \
   --tenant public \
   --namespace default \
-  --name temperature-processor \
-  --jar target/PulsarFunction-1.0-SNAPSHOT.jar \
+  --name temp-processing-fn \
+  --jar /pulsar/functions/PulsarFunction-1.0-SNAPSHOT.jar \
   --classname org.example.TemperatureProcessorFunction \
   --inputs persistent://public/default/temp_schema \
-  --output persistent://public/default/processed_temp
+  --output persistent://public/default/processed_temp \
+  --parallelism 1
 ```
 
 ## Flow Examples
